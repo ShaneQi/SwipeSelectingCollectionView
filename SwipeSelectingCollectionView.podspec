@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwipeSelectingCollectionView"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "A collection view subclass that enables swipe to select multiple cells just like in Photos app."
 
   s.description  = <<-DESC
