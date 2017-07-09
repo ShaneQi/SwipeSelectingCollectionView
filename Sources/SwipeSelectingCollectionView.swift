@@ -46,13 +46,7 @@ public class SwipeSelectingCollectionView: UICollectionView {
 			if let indexPath = beginIndexPath,
 				let isSelected = cellForItem(at: indexPath)?.isSelected {
 				selectingMode = (isSelected ? .deselecting : .selecting)
-				if isSelected {
-					delegate?.collectionView?(self, didDeselectItemAt: indexPath)
-					deselectItem(at: indexPath, animated: false)
-				} else {
-					delegate?.collectionView?(self, didSelectItemAt: indexPath)
-					selectItem(at: indexPath, animated: false, scrollPosition: [])
-				}
+				setSelection(!isSelected, indexPath: indexPath)
 			} else { selectingMode = .selecting }
 		case .changed:
 			handleChangeOf(gestureRecognizer: gestureRecognizer)
@@ -93,9 +87,6 @@ public class SwipeSelectingCollectionView: UICollectionView {
 				}
 			} else {
 				negativeIndexPaths = indexPaths(in: selectingRange)
-				if let beginIndexPathIndex = negativeIndexPaths.index(of: beginIndexPath) {
-					negativeIndexPaths.remove(at: beginIndexPathIndex)
-				}
 				positiveIndexPaths = indexPaths(in: range)
 			}
 			for indexPath in negativeIndexPaths {
@@ -122,24 +113,31 @@ public class SwipeSelectingCollectionView: UICollectionView {
 			if isSelected != isPositive {
 				if isPositive {
 					selectingIndexPaths.insert(indexPath)
-					delegate?.collectionView?(self, didSelectItemAt: indexPath)
-					selectItem(at: indexPath, animated: false, scrollPosition: [])
+					setSelection(true, indexPath: indexPath)
 				} else if selectingIndexPaths.contains(indexPath) {
-					delegate?.collectionView?(self, didDeselectItemAt: indexPath)
-					deselectItem(at: indexPath, animated: false)
+					setSelection(false, indexPath: indexPath)
 				}
 			}
 		case .deselecting:
 			if isSelected != !isPositive {
 				if isPositive {
 					selectingIndexPaths.insert(indexPath)
-					delegate?.collectionView?(self, didDeselectItemAt: indexPath)
-					deselectItem(at: indexPath, animated: false)
+					setSelection(false, indexPath: indexPath)
 				} else if selectingIndexPaths.contains(indexPath) {
-					delegate?.collectionView?(self, didSelectItemAt: indexPath)
-					selectItem(at: indexPath, animated: false, scrollPosition: [])
+					setSelection(true, indexPath: indexPath)
 				}
 			}
+		}
+	}
+
+	private func setSelection(_ selected: Bool, indexPath: IndexPath) {
+		switch selected {
+		case true:
+			delegate?.collectionView?(self, didSelectItemAt: indexPath)
+			selectItem(at: indexPath, animated: false, scrollPosition: [])
+		case false:
+			delegate?.collectionView?(self, didDeselectItemAt: indexPath)
+			deselectItem(at: indexPath, animated: false)
 		}
 	}
 
