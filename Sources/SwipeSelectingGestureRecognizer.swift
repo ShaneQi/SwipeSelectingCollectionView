@@ -1,5 +1,5 @@
 //
-//  PanSelectingGestureRecognizer.swift
+//  SwipeSelectingGestureRecognizer.swift
 //  TileTime
 //
 //  Created by Shane Qi on 7/9/17.
@@ -9,7 +9,7 @@
 import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
-class PanSelectingGestureRecognizer: UIPanGestureRecognizer {
+class SwipeSelectingGestureRecognizer: UIPanGestureRecognizer {
 
 	private var beginPoint: CGPoint?
 

@@ -1,5 +1,5 @@
 //
-//  PanSelectingCollectionView.swift
+//  SwipeSelectingCollectionView.swift
 //  TileTime
 //
 //  Created by Shane Qi on 7/2/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PanSelectingCollectionView: UICollectionView {
+public class SwipeSelectingCollectionView: UICollectionView {
 
 	private var beginSelectingPoint: CGPoint?
 	private var selectingRange: ClosedRange<IndexPath>?
@@ -20,20 +20,22 @@ public class PanSelectingCollectionView: UICollectionView {
 	}
 
 	lazy private var panSelectingGestureRecognizer: UIPanGestureRecognizer = {
-		let gestureRecognizer = PanSelectingGestureRecognizer(
+		let gestureRecognizer = SwipeSelectingGestureRecognizer(
 			target: self,
-			action: #selector(PanSelectingCollectionView.didPanSelectingGestureRecognizerChange(gestureRecognizer:)))
+			action: #selector(SwipeSelectingCollectionView.didPanSelectingGestureRecognizerChange(gestureRecognizer:)))
 		return gestureRecognizer
 	} ()
 
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		gestureRecognizers?.append(panSelectingGestureRecognizer)
+		allowsMultipleSelection = true
 	}
 
 	override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
 		super.init(frame: frame, collectionViewLayout: layout)
 		gestureRecognizers?.append(panSelectingGestureRecognizer)
+		allowsMultipleSelection = true
 	}
 
 	@objc private func didPanSelectingGestureRecognizerChange(gestureRecognizer: UIPanGestureRecognizer) {
