@@ -46,3 +46,15 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 	}
 
 }
+
+extension ViewController: UICollectionViewDelegate {
+
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		print("didSelect: \(indexPath)")
+	}
+
+	func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+		print("didDeselect: \(indexPath)")
+	}
+
+}

@@ -10,7 +10,7 @@ import UIKit
 
 public class SwipeSelectingCollectionView: UICollectionView {
 
-	private var beginSelectingPoint: CGPoint?
+	private var beginIndexPath: IndexPath?
 	private var selectingRange: ClosedRange<IndexPath>?
 	private var selectingMode: SelectingMode = .selecting
 	private var selectingIndexPaths = Set<IndexPath>()
@@ -42,15 +42,22 @@ public class SwipeSelectingCollectionView: UICollectionView {
 		let point = gestureRecognizer.location(in: self)
 		switch gestureRecognizer.state {
 		case .began:
-			beginSelectingPoint = point
-			if let indexPath = indexPathForItem(at: point),
+			self.beginIndexPath = indexPathForItem(at: point)
+			if let indexPath = beginIndexPath,
 				let isSelected = cellForItem(at: indexPath)?.isSelected {
 				selectingMode = (isSelected ? .deselecting : .selecting)
+				if isSelected {
+					delegate?.collectionView?(self, didDeselectItemAt: indexPath)
+					deselectItem(at: indexPath, animated: false)
+				} else {
+					delegate?.collectionView?(self, didSelectItemAt: indexPath)
+					selectItem(at: indexPath, animated: false, scrollPosition: [])
+				}
 			} else { selectingMode = .selecting }
 		case .changed:
 			handleChangeOf(gestureRecognizer: gestureRecognizer)
 		default:
-			beginSelectingPoint = nil
+			beginIndexPath = nil
 			selectingRange = nil
 			selectingIndexPaths.removeAll()
 		}
@@ -58,8 +65,7 @@ public class SwipeSelectingCollectionView: UICollectionView {
 
 	private func handleChangeOf(gestureRecognizer: UIPanGestureRecognizer) {
 		let point = gestureRecognizer.location(in: self)
-		guard let beginPoint = beginSelectingPoint,
-			var beginIndexPath = indexPathForItem(at: beginPoint),
+		guard var beginIndexPath = self.beginIndexPath,
 			var endIndexPath = indexPathForItem(at: point) else { return }
 		if endIndexPath < beginIndexPath {
 			swap(&beginIndexPath, &endIndexPath)
@@ -109,6 +115,7 @@ public class SwipeSelectingCollectionView: UICollectionView {
 	}
 
 	private func doSelection(at indexPath: IndexPath, isPositive: Bool) {
+		guard indexPath != beginIndexPath else { return }
 		guard let isSelected = cellForItem(at: indexPath)?.isSelected else { return }
 		switch selectingMode {
 		case .selecting:
