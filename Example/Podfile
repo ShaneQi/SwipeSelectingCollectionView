@@ -1,3 +1,5 @@
+platform :ios, '8.4'
+
 target 'SwipeSelectingExample' do
   use_frameworks!
   pod 'SwipeSelectingCollectionView', :path => '../'
