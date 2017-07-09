@@ -37,11 +37,17 @@ import SwipeSelectingCollectionView
 
 ## Usage example
 
+#### Programmatically
+
 ```swift
 import SwipeSelectingCollectionView
 
 let collectionView = CollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()) 
 ```
+
+#### Interface Builder
+
+![](./Assets/usage-IB.png)
 
 ## Contribute
 
