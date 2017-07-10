@@ -66,9 +66,9 @@ public class SwipeSelectingCollectionView: UICollectionView {
 		}
 		let range = ClosedRange(uncheckedBounds: (beginIndexPath, endIndexPath))
 		guard range != selectingRange else { return }
+		var positiveIndexPaths: [IndexPath]!
+		var negativeIndexPaths: [IndexPath]!
 		if let selectingRange = selectingRange {
-			var positiveIndexPaths = [IndexPath]()
-			var negativeIndexPaths = [IndexPath]()
 			if range.lowerBound == selectingRange.lowerBound {
 				if range.upperBound < selectingRange.upperBound {
 					negativeIndexPaths = indexPaths(in:
@@ -89,20 +89,16 @@ public class SwipeSelectingCollectionView: UICollectionView {
 				negativeIndexPaths = indexPaths(in: selectingRange)
 				positiveIndexPaths = indexPaths(in: range)
 			}
-			for indexPath in negativeIndexPaths {
-				doSelection(at: indexPath, isPositive: false)
-			}
-			for indexPath in positiveIndexPaths {
-				doSelection(at: indexPath, isPositive: true)
-			}
-			self.selectingRange = range
 		} else {
-			selectingRange = range
-			for indexPath in indexPaths(in: range) {
-				doSelection(at: indexPath, isPositive: true)
-			}
+			positiveIndexPaths = indexPaths(in: range)
 		}
-
+		for indexPath in negativeIndexPaths ?? [] {
+			doSelection(at: indexPath, isPositive: false)
+		}
+		for indexPath in positiveIndexPaths ?? [] {
+			doSelection(at: indexPath, isPositive: true)
+		}
+		selectingRange = range
 	}
 
 	private func doSelection(at indexPath: IndexPath, isPositive: Bool) {
