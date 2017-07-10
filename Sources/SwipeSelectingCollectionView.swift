@@ -106,25 +106,23 @@ public class SwipeSelectingCollectionView: UICollectionView {
 	}
 
 	private func doSelection(at indexPath: IndexPath, isPositive: Bool) {
+		// Ignore the begin index path, it's already taken care of when the gesture recognizer began.
 		guard indexPath != beginIndexPath else { return }
 		guard let isSelected = cellForItem(at: indexPath)?.isSelected else { return }
-		switch selectingMode {
-		case .selecting:
-			if isSelected != isPositive {
-				if isPositive {
-					selectingIndexPaths.insert(indexPath)
-					setSelection(true, indexPath: indexPath)
-				} else if selectingIndexPaths.contains(indexPath) {
-					setSelection(false, indexPath: indexPath)
-				}
+		let expectedSelection: Bool = {
+			switch selectingMode {
+			case .selecting: return isPositive
+			case .deselecting: return !isPositive
 			}
-		case .deselecting:
-			if isSelected != !isPositive {
-				if isPositive {
-					selectingIndexPaths.insert(indexPath)
-					setSelection(false, indexPath: indexPath)
-				} else if selectingIndexPaths.contains(indexPath) {
-					setSelection(true, indexPath: indexPath)
+		} ()
+		if isSelected != expectedSelection {
+			if isPositive {
+				selectingIndexPaths.insert(indexPath)
+			}
+			if selectingIndexPaths.contains(indexPath) {
+				setSelection(expectedSelection, indexPath: indexPath)
+				if !isPositive {
+					selectingIndexPaths.remove(indexPath)
 				}
 			}
 		}
