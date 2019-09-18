@@ -1,7 +1,20 @@
-// swift-tools-version:3.1
+// swift-tools-version:5.0
 
 import PackageDescription
 
 let package = Package(
-    name: "SwipeSelectingCollectionView"
+	name: "SwipeSelectingCollectionView",
+	products: [
+		.library(
+			name: "SwipeSelectingCollectionView",
+			targets: ["SwipeSelectingCollectionView"])
+	],
+	dependencies: [],
+	targets: [
+		.target(
+			name: "SwipeSelectingCollectionView",
+			dependencies: [],
+			path: "./Sources")
+		],
+	swiftLanguageVersions: [.v5]
 )

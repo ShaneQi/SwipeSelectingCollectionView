@@ -180,7 +180,6 @@
 				34F91EA11F129D5800CA8A3F /* Frameworks */,
 				34F91EA21F129D5800CA8A3F /* Resources */,
 				F3E1DB5179DF3CE1DF2FAE04 /* [CP] Embed Pods Frameworks */,
-				7C053FA9C241D857E0020F68 /* [CP] Copy Pods Resources */,
 				342B96C11F1319EC0082FDBE /* ShellScript */,
 			);
 			buildRules = (
@@ -200,8 +199,6 @@
 				34F91EB41F129D5800CA8A3F /* Sources */,
 				34F91EB51F129D5800CA8A3F /* Frameworks */,
 				34F91EB61F129D5800CA8A3F /* Resources */,
-				3675D75D6B80105A4F05E7CA /* [CP] Embed Pods Frameworks */,
-				F15BD9D1CF94627085A0054A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,8 +218,6 @@
 				34F91EBF1F129D5800CA8A3F /* Sources */,
 				34F91EC01F129D5800CA8A3F /* Frameworks */,
 				34F91EC11F129D5800CA8A3F /* Resources */,
-				D09FCD5D880676E6BA262F5F /* [CP] Embed Pods Frameworks */,
-				456E6AE754FDF9C6A765E41C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,51 +356,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		3675D75D6B80105A4F05E7CA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExampleTests/Pods-SwipeSelectingExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		456E6AE754FDF9C6A765E41C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExampleUITests/Pods-SwipeSelectingExampleUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7C053FA9C241D857E0020F68 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExample/Pods-SwipeSelectingExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B46912932667210891F71974 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,43 +374,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D09FCD5D880676E6BA262F5F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExampleUITests/Pods-SwipeSelectingExampleUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F15BD9D1CF94627085A0054A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExampleTests/Pods-SwipeSelectingExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F3E1DB5179DF3CE1DF2FAE04 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExample/Pods-SwipeSelectingExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SwipeSelectingExample/Pods-SwipeSelectingExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SwipeSelectingCollectionView/SwipeSelectingCollectionView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -469,7 +389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSelectingExample/Pods-SwipeSelectingExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwipeSelectingExample/Pods-SwipeSelectingExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

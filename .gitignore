@@ -4,3 +4,4 @@
 Example/Pods/
 Example/SwipeSelectingExample\.xcworkspace/
 Example/Podfile\.lock
+/.swiftpm
