@@ -1,16 +1,16 @@
 # SwipeSelectingCollectionView
 > A collection view subclass that enables swipe to select multiple cells just like in Photos app.
 
-[![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org/)
-[![Swift Version](https://img.shields.io/badge/iOS-8.0-green.svg)](https://www.apple.com/ios/ios-11/)
+[![Swift 4+](https://img.shields.io/badge/Swift-4+-orange.svg)](https://swift.org/)
+[![iOS 8.0](https://img.shields.io/badge/iOS-8.0+-green.svg)](https://www.apple.com/)
 
-![](./Assets/demo.gif)
+![demo](./Assets/demo.gif)
 
 ## Requirements
 
-- Swift 4.0
+- Swift 4.0+
 - iOS 8.0+
-- Xcode 7.3
+- Xcode 7.3+
 
 ## Installation
 
