@@ -19,5 +19,6 @@ Inspired by Photos app in iOS 9+.
   s.source       = { :git => "https://github.com/ShaneQi/SwipeSelectingCollectionView.git", :tag => "#{s.version}" }
 
   s.source_files  = "Sources"
+  s.swift_version = ["4.0", "4.2", "5.0"]
 
 end
