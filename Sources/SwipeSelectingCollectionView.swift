@@ -127,8 +127,10 @@ public class SwipeSelectingCollectionView: UICollectionView {
 	private func setSelection(_ selected: Bool, indexPath: IndexPath) {
 		switch selected {
 		case true:
-			delegate?.collectionView?(self, didSelectItemAt: indexPath)
-			selectItem(at: indexPath, animated: false, scrollPosition: [])
+			if delegate?.collectionView?(self, shouldSelectItemAt: indexPath) ?? true == true {
+				delegate?.collectionView?(self, didSelectItemAt: indexPath)
+				selectItem(at: indexPath, animated: false, scrollPosition: [])
+			}
 		case false:
 			delegate?.collectionView?(self, didDeselectItemAt: indexPath)
 			deselectItem(at: indexPath, animated: false)
